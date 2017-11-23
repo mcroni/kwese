@@ -19,31 +19,26 @@ links = ['https://graph.facebook.com/?id=https://win.kwese.com/ivy-barley.php',
          'https://graph.facebook.com/?id=https://win.kwese.com/peter-wachira.php',
          'https://graph.facebook.com/?id=https://win.kwese.com/farai-nechikwira.php']
 
-# proxies = {
-#   'http': 'http://177.67.80.226:3128',
-#   'https': 'http://177.67.80.226:3128',
-# }
-
-proxies = {'https': 'http://182.253.36.188:52552'}
+proxies = {'https': 'http://180.247.12.6:8080'}
 
 
-def index2(request):
-    if request.method == "POST":
-        headers = {'user-agent': 'my-app/0.0.1'}
-        payload = {
-            'client_id':client_id,
-            'client_secret':client_secret
-        }
-        url = "https://graph.facebook.com/?id=https://win.kwese.com/ivy-barley.php"
-        r = requests.get(url,headers,data=json.dumps(payload))
-        print(r.text)
-        actual = json.loads(r.text)
-        actual = actual['share']['share_count']
-        data = {}
-        data['votes'] = actual
-        # time.sleep(5)
-        return JsonResponse(data)
-    return render(request,'check/index.html',{})
+# def index2(request):
+#     if request.method == "POST":
+#         headers = {'user-agent': 'my-app/0.0.1'}
+#         payload = {
+#             'client_id':client_id,
+#             'client_secret':client_secret
+#         }
+#         url = "https://graph.facebook.com/?id=https://win.kwese.com/ivy-barley.php"
+#         r = requests.get(url,headers,data=json.dumps(payload))
+#         print(r.text)
+#         actual = json.loads(r.text)
+#         actual = actual['share']['share_count']
+#         data = {}
+#         data['votes'] = actual
+#         # time.sleep(5)
+#         return JsonResponse(data)
+#     return render(request,'check/index.html',{})
 
 
 headers = {'user-agent': 'my-app/0.0.1'}
@@ -56,14 +51,15 @@ def index(request):
         }
         data = {}
         for url in links:
-            r = requests.get(url, headers=headers,data=json.dumps(payload),proxies=proxies)
+            r = requests.get(url, headers=headers,data=json.dumps(payload))
             actual = json.loads(r.text)
+            print(actual)
             name = actual['og_object']['title']
             votes = actual['share']['share_count']
             vote = {}
             vote['name'] = name
             vote['votes'] = votes
-            # data['{0}'.format(name)] = name
+            data['{0}'.format(name)] = name
             data['{0}'.format(name)] = vote
         print(data)
         return JsonResponse(data)

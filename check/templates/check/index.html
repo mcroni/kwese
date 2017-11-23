@@ -190,12 +190,12 @@
 <script src="{% static 'check/semantic.min.js' %}"></script>
 </body>
 
-
-<script type="text/javascrippythont">
-    $(document).ready(function () {
+<script type="text/javascript">
+ $(document).ready(function () {
         console.log("man's not hot")
 
         function checker() {
+            console.log("time to hunt for real data");
            $.ajax({
                url: '/',
                method : "POST",
@@ -218,14 +218,9 @@
         }
 
 
-        function random_no(){
-     var ran=Math.random();
-    console.log(ran);
-}
-
         window.setInterval(function(){
          checker();
-}, 60000);
+        }, 60000);
     });
 
 
@@ -260,4 +255,6 @@ $.ajaxSetup({
     }
 });
 </script>
+
+
 </html>

@@ -3,6 +3,7 @@ import requests
 from django.http import JsonResponse
 import json
 import time
+from django.views.decorators.csrf import csrf_exempt
 client_secret = '86dec6262eab31210b626b032dad0817'
 client_id = '229203697589598'
 
@@ -66,7 +67,7 @@ def index(request):
         return JsonResponse(data)
     return render(request,'check/index.html',{})
 
-
+@csrf_exempt
 def getter(request):
     headers = {'user-agent': 'my-app/0.0.1'}
     payload = {

@@ -192,7 +192,7 @@
 
 <script type="text/javascript">
  $(document).ready(function () {
-        console.log("man's not hot")
+        console.log("man's not hot");
 
         function checker() {
             console.log("time to hunt for real data");
@@ -200,7 +200,6 @@
                url: '/',
                method : "POST",
                success:function (data) {
-                    console.log(data);
                    $('#abisola-akindeinde').html(data['Abisola Akindeinde']['votes']);
                    $('#dumisani-mahlangu').html(data['Dumisani Mahlangu']['votes']);
                    $('#blessing-machiya').html(data['Blessing Machiya']['votes']);

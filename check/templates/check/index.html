@@ -197,8 +197,7 @@
         function checker() {
             console.log("time to hunt for real data");
            $.ajax({
-               url: '/',
-               method : "POST",
+               url: '/getter/',
                success:function (data) {
                    $('#abisola-akindeinde').html(data['Abisola Akindeinde']['votes']);
                    $('#dumisani-mahlangu').html(data['Dumisani Mahlangu']['votes']);

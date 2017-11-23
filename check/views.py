@@ -42,6 +42,7 @@ proxies = {'https': 'http://180.247.12.6:8080'}
 
 
 headers = {'user-agent': 'my-app/0.0.1'}
+
 def index(request):
     if request.method == "POST":
         headers = {'user-agent': 'my-app/0.0.1'}
@@ -65,6 +66,27 @@ def index(request):
         return JsonResponse(data)
     return render(request,'check/index.html',{})
 
+
+def getter(request):
+    headers = {'user-agent': 'my-app/0.0.1'}
+    payload = {
+        'client_id': client_id,
+        'client_secret': client_secret
+    }
+    data = {}
+    for url in links:
+        r = requests.get(url, headers=headers,data=json.dumps(payload))
+        actual = json.loads(r.text)
+        print(actual)
+        name = actual['og_object']['title']
+        votes = actual['share']['share_count']
+        vote = {}
+        vote['name'] = name
+        vote['votes'] = votes
+        data['{0}'.format(name)] = name
+        data['{0}'.format(name)] = vote
+    print(data)
+    return JsonResponse(data)
 
 
 

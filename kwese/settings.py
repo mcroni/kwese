@@ -25,7 +25,7 @@ SECRET_KEY = '6iqqne5lav$!nd=c!3-o&)4%)om@&q39%k=dk6^mwq(jf)k@x8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mcroni.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

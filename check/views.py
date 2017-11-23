@@ -2,8 +2,7 @@ from django.shortcuts import render,HttpResponse
 import requests
 from django.http import JsonResponse
 import json
-import time
-from django.views.decorators.csrf import csrf_exempt
+from .models import Contestant
 client_secret = '86dec6262eab31210b626b032dad0817'
 client_id = '229203697589598'
 
@@ -21,26 +20,6 @@ links = ['https://graph.facebook.com/?id=https://win.kwese.com/ivy-barley.php',
          'https://graph.facebook.com/?id=https://win.kwese.com/farai-nechikwira.php']
 
 proxies = {'https': 'http://180.247.12.6:8080'}
-
-
-# def index2(request):
-#     if request.method == "POST":
-#         headers = {'user-agent': 'my-app/0.0.1'}
-#         payload = {
-#             'client_id':client_id,
-#             'client_secret':client_secret
-#         }
-#         url = "https://graph.facebook.com/?id=https://win.kwese.com/ivy-barley.php"
-#         r = requests.get(url,headers,data=json.dumps(payload))
-#         print(r.text)
-#         actual = json.loads(r.text)
-#         actual = actual['share']['share_count']
-#         data = {}
-#         data['votes'] = actual
-#         # time.sleep(5)
-#         return JsonResponse(data)
-#     return render(request,'check/index.html',{})
-
 
 headers = {'user-agent': 'my-app/0.0.1'}
 
@@ -67,7 +46,7 @@ def index(request):
         return JsonResponse(data)
     return render(request,'check/index.html',{})
 
-@csrf_exempt
+
 def getter(request):
     headers = {'user-agent': 'my-app/0.0.1'}
     payload = {
@@ -82,6 +61,8 @@ def getter(request):
         name = actual['og_object']['title']
         votes = actual['share']['share_count']
         vote = {}
+        # cont = Contestant(nama=vote['name'],votes=vote['votes'])
+        # cont.save()
         vote['name'] = name
         vote['votes'] = votes
         data['{0}'.format(name)] = name

@@ -63,7 +63,7 @@ def getter(request):
     }
     data = {}
     for url in links:
-        r = requests.get(url, headers=headers,data=json.dumps(payload),proxies=proxies)
+        r = requests.get(url, headers=headers,data=json.dumps(payload))
         actual = json.loads(r.text)
         print(actual)
         name = actual['og_object']['title']

@@ -193,6 +193,29 @@
 <script type="text/javascript">
  $(document).ready(function () {
         console.log("man's not hot");
+        check();
+        function check() {
+            console.log("breaking the virginity");
+             $.ajax({
+               url: '/getter/',
+               success:function (data) {
+                   $('#abisola-akindeinde').html(data['Abisola Akindeinde']['votes']);
+                   $('#dumisani-mahlangu').html(data['Dumisani Mahlangu']['votes']);
+                   $('#blessing-machiya').html(data['Blessing Machiya']['votes']);
+                   $('#ezinne-uko').html(data['Ezinne Uko']['votes']);
+                   $('#farai-nechikwira').html(data['Farai Nechikwira']['votes']);
+                   $('#ivy-barley').html(data['Ivy Barley']['votes']);
+                   $('#bankole-olalekan').html(data['Olalekan Bankole Emmanuel']['votes']);
+                   $('#pascal-akahome').html(data['Pascal Akahome']['votes']);
+                   $('#peter-wachira').html(data['Peter Wachira']['votes']);
+                   $('#shola-peter').html(data['Shola Peter']['votes']);
+                   $('#sarah-uwitonze').html(data['Uwitonze Sarah']['votes']);
+                   $('#veridique-musambaghani-kakule').html(data['Veridique Musambaghani Kakule']['votes'])
+               }
+           })
+        }
+
+
 
         function checker() {
             console.log("time to hunt for real data");
